@@ -898,3 +898,194 @@ body {
 .owl-carousel .owl-item.center .testimonial-box {
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
 }
+
+/*============================================= additional edits =============================================*/
+/* Remove dark header background on mobile for CKAV templates */
+/* ---------- Force transparent header on all small screens ---------- */
+@media (max-width: 992px) { /* tweak breakpoint if needed */
+  /* highest specificity target for header and inner wrappers */
+  header.ckav-header,
+  header.ckav-header * ,
+  .ckav-header .container-fluid,
+  .ckav-header .row,
+  .ckav-header .col,
+  .ckav-header .logo-wrapper,
+  .ckav-header .inner-wrapper,
+  .ckav-header .social-section,
+  .ckav-header .menu-icon-wrp {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* override typical CKAV/mobile helper classes that may be injected */
+  .ckav-header .bg-dark,
+  .ckav-header .bg-alpha-9,
+  .ckav-header .bg-theme-dark,
+  .ckav-header.bg-dark,
+  .ckav-header.bg-alpha-9,
+  .ckav-header.bg-theme-dark,
+  .ckav-mobile-header,
+  .mobile-header,
+  .ckav-header .overlay,
+  .ckav-header::before,
+  .ckav-header::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    content: none !important;
+    display: block !important;
+  }
+
+  /* sometimes the body or html gets a mobile-theme class — defensively handle it */
+  body.mobile .ckav-header,
+  body.mobile .ckav-header * ,
+  html.mobile .ckav-header,
+  .active-popup .ckav-header,
+  .active-popup .ckav-header * {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+/* Restore visible hamburger lines */
+@media (max-width: 992px) {
+  .menu-icon .bar,
+  .menu-icon::before,
+  .menu-icon::after {
+    background: #ffffff !important; /* your desired color */
+    display: block !important;
+  }
+}
+
+/*=============================================gloss ary edits=============================================*/
+/* ---------- Glassy popups for CKAV popup-section structure ---------- */
+/* Put this at the very end of your CSS file (after ckav-main.css) */
+
+.popup-section,
+.popup-section .inner-wrapper,
+.popup-section .content-area,
+.popup-section .header-area,
+.popup-section .content-area .row {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Apply the glass panel to the inner wrapper (keeps layout intact) */
+.popup-section .inner-wrapper {
+  position: relative !important;
+  background: rgba(255,255,255,0.10) !important;       /* translucent base */
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.28) !important;
+  overflow: hidden !important;
+  padding: 40px !important; /* you can reduce/increase */
+  color: inherit !important;
+  z-index: 10001 !important;
+}
+
+/* Ensure internal header/content areas are transparent so glass shows */
+.popup-section .header-area,
+.popup-section .content-area,
+.popup-section .content-area > * {
+  background: transparent !important;
+  background-color: transparent !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Neutralize any pseudo-elements that create a white block */
+.popup-section .inner-wrapper::before,
+.popup-section .inner-wrapper::after,
+.popup-section .content-area::before,
+.popup-section .content-area::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Fallback overlay to mimic frost if backdrop-filter is not applied */
+.popup-section .inner-wrapper::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)) !important;
+  z-index: 0 !important;
+}
+
+/* Make the close button look good on glass */
+.popup-close {
+  background: rgba(0,0,0,0.30) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+  z-index: 10002 !important;
+}
+
+/* Defensive: clear Magnific / wrapper backgrounds */
+.mfp-wrap, .mfp-content, .mfp-figure, .mfp-iframe-holder {
+  background: transparent !important;
+}
+
+/* In case there is an inline background style added by JS, this JS snippet (optional)
+   will clear it. Copy it before </body> in your HTML if needed. */
+/*
+<script>
+  (function(){
+    function clearPopupBg(){
+      document.querySelectorAll('.popup-section .inner-wrapper, .popup-section .content-area, .popup-section').forEach(el=>{
+        el.style.background = 'rgba(255,255,255,0.10)';
+        el.style.backgroundColor = 'rgba(255,255,255,0.10)';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', clearPopupBg);
+    document.addEventListener('mfpOpen', clearPopupBg);
+    new MutationObserver(clearPopupBg).observe(document.body, {childList:true, subtree:true});
+  })();
+</script>
+*/
+
+/* ---------- Text color overrides for glassmorphism UI ---------- */
+
+/* All headings — make them off-white */
+.popup-section h1,
+.popup-section h2,
+.popup-section h3,
+.popup-section h4,
+.popup-section h5,
+.popup-section h6,
+.popup-section .heading-content,
+.popup-section .heading-section,
+.popup-section .header-area h2,
+.popup-section .heading-page {
+  color: #f3f3f3 !important;
+}
+
+/* All regular text / paragraphs / grey areas — make them white */
+.popup-section p,
+.popup-section span,
+.popup-section li,
+.popup-section .heading-content-sub,
+.popup-section .content-area,
+.popup-section .content-area * {
+  color: #ffffff !important;
+}
+
+/* Remove template-injected grey shades */
+.popup-section .color-text-dark,
+.popup-section .font-01,
+.popup-section .font-02,
+.popup-section .typo-light {
+  color: #ffffff !important;
+}
+
+/* Navigation popup link text when popup is open */
+.mfp-content,
+.mfp-content * {
+  color: #ffffff !important;
+}
