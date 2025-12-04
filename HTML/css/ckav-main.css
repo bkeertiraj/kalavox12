@@ -1089,3 +1089,15 @@ body {
 .mfp-content * {
   color: #ffffff !important;
 }
+
+.bg-video {
+    position: fixed; /* stays behind everything */
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;     /* MAIN FIX: fills entire area */
+    transform: translate(-50%, -50%);
+    z-index: -1;           /* behind all elements */
+    pointer-events: none;  /* prevent clicking on the video */
+}
