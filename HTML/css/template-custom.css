@@ -370,7 +370,7 @@
 .blur-card::after{
 
     display:none;
-    
+
     content:"Coming Soon";
 
     position:absolute;
@@ -511,4 +511,11 @@
 .contact-section textarea::placeholder {
     color: rgba(255, 255, 255, 0.9);
     opacity: 1; /* Ensures full visibility across browsers */
+}
+
+/*gallery*/
+.gallery-section .portfolio-col figure{
+    padding:12px;
+    border-radius:20px;
+    overflow:hidden;
 }
