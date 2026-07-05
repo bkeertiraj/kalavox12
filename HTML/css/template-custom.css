@@ -369,6 +369,8 @@
 
 .blur-card::after{
 
+    display:none;
+    
     content:"Coming Soon";
 
     position:absolute;
